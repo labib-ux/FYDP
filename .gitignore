@@ -11,9 +11,10 @@ runs/
 *.onnx
 *.engine
 
-# Data (too large for git)
+# Data (too large for git) — manifests ARE committed as audit proof
 data/*
 !data/README.md
+!data/split.json
 *.jpg
 *.jpeg
 *.png

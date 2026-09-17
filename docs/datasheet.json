@@ -1,0 +1,16 @@
+{
+  "root": "/Users/nafizimtiazlabib/Downloads/Fabric Defects Dataset",
+  "total_images": 2578,
+  "per_class": {
+    "Vertical": 101,
+    "defect free": 1505,
+    "hole": 281,
+    "horizontal": 136,
+    "lines": 157,
+    "stain": 398
+  },
+  "total_bytes": 2130083849,
+  "exact_duplicate_groups": 17,
+  "exact_duplicate_files": 34,
+  "leakage_verdict": "not checked (pass --train and --test)"
+}
