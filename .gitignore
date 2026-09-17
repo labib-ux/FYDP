@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Ultralytics / training
+runs/
+*.pt
+*.onnx
+*.engine
+
+# Data (too large for git)
+data/*
+!data/README.md
+*.jpg
+*.jpeg
+*.png
+!docs/*.png
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
