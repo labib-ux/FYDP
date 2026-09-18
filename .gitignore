@@ -20,6 +20,10 @@ data/*
 *.png
 !docs/*.png
 
+# Scratch / experiments (never commit: thumbnails, contact sheets, local runs)
+scratch/
+*.bmp
+
 # OS / editor
 .DS_Store
 .vscode/
