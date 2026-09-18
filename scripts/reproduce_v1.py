@@ -62,8 +62,13 @@ def manifest_split(train_rels, test_rels):
     return train, test
 
 
-def materialize(split, dataset_root, dest):
-    """Symlink split {cls: [rel]} into dest/{train|test}/<sanitized_cls>/."""
+def materialize(split, dataset_root, dest, link_mode="symlink"):
+    """Place split {cls: [rel]} under dest/<side>/<sanitized_cls>/.
+
+    link_mode='symlink' (fast, needs POSIX fs) or 'copy' (Colab/Drive,
+    where the FUSE mount rejects symlinks).
+    """
+    import shutil
     mapping = {}
     for side, groups in split.items():
         for cls, rels in groups.items():
@@ -74,7 +79,11 @@ def materialize(split, dataset_root, dest):
             for rel in rels:
                 src = (dataset_root / rel).resolve()
                 dst = d / Path(rel).name
-                if not dst.exists() and src.exists():
+                if dst.exists() or dst.is_symlink() or not src.exists():
+                    continue
+                if link_mode == "copy":
+                    shutil.copy2(src, dst)
+                else:
                     os.symlink(src, dst)
     (dest / "class_map.json").write_text(json.dumps(mapping, indent=2))
     return mapping
@@ -107,6 +116,8 @@ def main():
     ap.add_argument("--out", default="docs/repro.json")
     ap.add_argument("--eval-only", default=None,
                     help="path to trained classify best.pt: skip training, eval on honest test")
+    ap.add_argument("--link-mode", default="symlink", choices=["symlink", "copy"],
+                    help="copy = for Google Drive/Colab (no symlink support)")
     args = ap.parse_args()
 
     try:
@@ -123,7 +134,7 @@ def main():
         arm_dir = Path(args.work) / arm_name
         train_dir = arm_dir / "train"
         materialize({"train": train_groups, "test": test_groups},
-                    dataset_root, arm_dir)
+                    dataset_root, arm_dir, link_mode=args.link_mode)
         model = YOLO(args.eval_only or weights)
         if not args.eval_only:
             model.train(data=str(train_dir), epochs=args.epochs,
