@@ -44,3 +44,4 @@ for f in lines_may:
     h = get_hash(f)
     print(f"  {os.path.basename(f)} size={sz} md5={h}")
     shutil.copy2(f, os.path.join(TARGET_DIR, "lines_" + os.path.basename(f)))
+
