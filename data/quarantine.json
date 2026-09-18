@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "date": "2026-09-18",
+  "reviewer": "team visual review (Raspberry Pi rig swatch comparison)",
+  "policy": "listed files are excluded from train AND test until relabeled",
+  "entries": [
+    {
+      "path": "hole/line_2018-10-11 12_40_36.005306.jpg",
+      "verdict": "suspect_cross_label",
+      "reason": "same physical swatch and fray pattern as lines/line_2018-10-10 11_41_14.456214.jpg, defect-free, labeled hole vs lines"
+    },
+    {
+      "path": "lines/line_2018-10-10 11_41_14.456214.jpg",
+      "verdict": "suspect_cross_label",
+      "reason": "counterpart of above; same swatch labeled lines"
+    },
+    {
+      "path": "hole/line_2018-10-11 12_38_10.814979.jpg",
+      "verdict": "suspect_cross_label",
+      "reason": "same red swatch, no defect, as lines/line_2018-10-10 11_58_54.758485.jpg; labeled hole vs lines"
+    },
+    {
+      "path": "lines/line_2018-10-10 11_58_54.758485.jpg",
+      "verdict": "suspect_cross_label",
+      "reason": "counterpart of above; same swatch labeled lines"
+    },
+    {
+      "path": "hole/line_2018-10-11 12_44_47.507978.jpg",
+      "verdict": "suspect_cross_label",
+      "reason": "same green swatch series, no defect, as lines/line_2018-10-10 11_05_40.691097.jpg; labeled hole vs lines"
+    },
+    {
+      "path": "lines/line_2018-10-10 11_05_40.691097.jpg",
+      "verdict": "suspect_cross_label",
+      "reason": "counterpart of above; same swatch labeled lines"
+    },
+    {
+      "path": "hole/line_2018-10-11 12_38_59.079794.jpg",
+      "verdict": "suspect_batch",
+      "reason": "same mislabeled Oct-11 rig batch (line_ script prefix inside hole/); quarantined pending row review"
+    },
+    {
+      "path": "hole/line_2018-10-11 12_39_52.246635.jpg",
+      "verdict": "suspect_batch",
+      "reason": "same mislabeled Oct-11 rig batch (line_ script prefix inside hole/); quarantined pending row review"
+    },
+    {
+      "path": "hole/line_2018-10-11 12_41_17.761774.jpg",
+      "verdict": "suspect_batch",
+      "reason": "same mislabeled Oct-11 rig batch (line_ script prefix inside hole/); quarantined pending row review"
+    },
+    {
+      "path": "hole/line_2018-10-11 12_42_20.761204.jpg",
+      "verdict": "suspect_batch",
+      "reason": "same mislabeled Oct-11 rig batch (line_ script prefix inside hole/); quarantined pending row review"
+    },
+    {
+      "path": "hole/line_2018-10-11 12_43_04.986904.jpg",
+      "verdict": "suspect_batch",
+      "reason": "same mislabeled Oct-11 rig batch (line_ script prefix inside hole/); quarantined pending row review"
+    },
+    {
+      "path": "hole/line_2018-10-11 12_43_50.021650.jpg",
+      "verdict": "suspect_batch",
+      "reason": "same mislabeled Oct-11 rig batch (line_ script prefix inside hole/); quarantined pending row review"
+    }
+  ]
+}

@@ -75,6 +75,9 @@ def main():
                          "Default covers processed-families, roll ids, dated shoots.")
     ap.add_argument("--materialize", default=None,
                     help="optional dir to create train/<class>/ test/<class>/ symlinks")
+    ap.add_argument("--quarantine", default=None,
+                    help="JSON list of {path, verdict, reason} to exclude from "
+                         "train AND test (see data/quarantine.json)")
     args = ap.parse_args()
 
     root = Path(args.root)
@@ -90,14 +93,26 @@ def main():
     patterns = args.roll_regex or list(DEFAULT_ROLL_PATTERNS)
     rng = random.Random(args.seed)
 
+    quarantined = {}
+    if args.quarantine:
+        q = json.loads(Path(args.quarantine).read_text())
+        for e in q.get("entries", []):
+            quarantined[e["path"]] = e.get("verdict", "quarantined")
+
     # Pass 1: collect + drop exact byte-duplicates (keep cleanest filename).
     seen = {}  # md5 -> (cls, rel, name)
+    encountered = set()
+    quarantined_hit, quarantined_missing = [], []
     for sub in sorted(p for p in root.iterdir() if p.is_dir()):
         for p in sorted(sub.iterdir()):
             if not (p.is_file() and p.suffix.lower() in IMG_EXTS):
                 continue
-            h = md5_of(p)
             rel = str(p.relative_to(root))
+            encountered.add(rel)
+            if rel in quarantined:
+                quarantined_hit.append(rel)
+                continue
+            h = md5_of(p)
             cand = (sub.name, rel, p.name)
             if h not in seen:
                 seen[h] = cand
@@ -111,7 +126,12 @@ def main():
             if not (p.is_file() and p.suffix.lower() in IMG_EXTS):
                 continue
             rel = str(p.relative_to(root))
-            keeper = seen[md5_of(p)][1]
+            if rel in quarantined:
+                continue  # excluded before hashing; reported separately
+            h = md5_of(p)
+            if h not in seen:
+                continue  # same reason: file never entered the pool
+            keeper = seen[h][1]
             if rel != keeper:
                 removed_dupes.append({"dropped": rel, "kept": keeper})
     kept_total = len(seen)
@@ -173,6 +193,7 @@ def main():
     distinct_rolls = len({r for rolls in by_class_roll.values() for r in rolls
                           if not r.startswith("__file__:")})
     n_singletons = sum(v["n_singletons"] for v in per_class.values())
+    quarantined_missing = sorted(set(quarantined) - encountered)
     # Honest flag: fully group-disjoint only if every file had a group id.
     manifest = {
         "root": args.root,
@@ -183,6 +204,9 @@ def main():
         "total_images": kept_total,
         "exact_duplicates_removed": len(removed_dupes),
         "removed_duplicates": removed_dupes,
+        "quarantine_file": args.quarantine,
+        "quarantined_excluded": sorted(quarantined_hit),
+        "quarantine_missing": quarantined_missing,
         "distinct_groups": distinct_rolls,
         "ungrouped_singleton_files": n_singletons,
         "per_class": per_class,

@@ -15,6 +15,7 @@ runs/
 data/*
 !data/README.md
 !data/split.json
+!data/quarantine.json
 *.jpg
 *.jpeg
 *.png
