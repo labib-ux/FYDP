@@ -1,0 +1,8 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ffffff', 'primaryBorderColor': '#333333', 'lineColor': '#333333', 'fontSize': '18px'}, 'flowchart': {'nodeSpacing': 50, 'rankSpacing': 70}}}%%
+flowchart LR
+    A["Camera / Image Stream"] --> B["Industrial Preprocessing<br/>denoise, deblur, low-light norm"]
+    B --> C["YOLO Defect Detector<br/>type + boxes and masks"]
+    C --> D["Metadata Bridge<br/>D_s + rolling average"]
+    D --> E["Lead Time Predictor<br/>Random Forest"]
+    E --> F["Planner Dashboard"]
+    F -. closed-loop feedback .-> A

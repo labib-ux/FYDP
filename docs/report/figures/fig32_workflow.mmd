@@ -1,0 +1,15 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ffffff', 'primaryBorderColor': '#333333', 'lineColor': '#333333', 'fontSize': '18px'}, 'flowchart': {'nodeSpacing': 45, 'rankSpacing': 60}}}%%
+flowchart TD
+    Start(["Start"]) --> Load["Load frame"]
+    Load --> Pre["Preprocess"]
+    Pre --> YOLO["YOLO detection"]
+    YOLO --> Q{"Defect?"}
+    Q -- Yes --> Area["Area + D_s"]
+    Q -- No --> Zero["D_s = 0"]
+    Area --> Roll["Rolling average"]
+    Zero --> Roll
+    Roll --> Pred["Predict hours"]
+    Pred --> Show["Display result"]
+    Show --> Next{"More frames?"}
+    Next -- Yes --> Load
+    Next -- No --> End(["End"])

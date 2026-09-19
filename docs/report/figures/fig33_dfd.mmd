@@ -1,0 +1,12 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ffffff', 'primaryBorderColor': '#333333', 'lineColor': '#333333', 'fontSize': '18px'}, 'flowchart': {'nodeSpacing': 50, 'rankSpacing': 70}}}%%
+flowchart LR
+    Planner(["Planner / Inspector"])
+    Camera(["Fabric Camera"])
+    Store[("Manufacturing Data")]
+    P0(("0 Detect + Score + Predict"))
+    Out(["Result + D_s + Hours"])
+    Camera --> P0
+    Store --> P0
+    Planner --> P0
+    P0 --> Out
+    Out --> Planner

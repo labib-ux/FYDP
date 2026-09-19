@@ -1,0 +1,12 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ffffff', 'primaryBorderColor': '#333333', 'lineColor': '#333333', 'fontSize': '18px'}, 'flowchart': {'nodeSpacing': 45, 'rankSpacing': 60}}}%%
+flowchart TD
+    C["Calibrate pixels to inches<br/>fixed geometry"] --> M["Measure fault length"]
+    M --> L{"Length?"}
+    L -- "under 3 in" --> P1["1 point"]
+    L -- "3 to 6 in" --> P2["2 points"]
+    L -- "6 to 9 in" --> P3["3 points"]
+    L -- "over 9 in or hole over 1 in" --> P4["4 points"]
+    P1 --> G["Roll grade<br/>from total + length + weight"]
+    P2 --> G
+    P3 --> G
+    P4 --> G

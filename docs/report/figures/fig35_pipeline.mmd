@@ -1,0 +1,7 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ffffff', 'primaryBorderColor': '#333333', 'lineColor': '#333333', 'fontSize': '18px'}, 'flowchart': {'nodeSpacing': 45, 'rankSpacing': 60}}}%%
+flowchart LR
+    F1["Machine speed<br/>20-100 m/min"] --> RF["Random Forest<br/>100 trees"]
+    F2["Order quantity<br/>100-10000"] --> RF
+    F3["Defect density D_s<br/>0.0-0.5"] --> RF
+    RF --> H["Lead time<br/>hours"]
+    H --> E["MAE / RMSE / R2<br/>vs static + no-D_s"]

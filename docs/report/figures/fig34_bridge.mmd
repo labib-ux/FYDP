@@ -1,0 +1,8 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ffffff', 'primaryBorderColor': '#333333', 'lineColor': '#333333', 'fontSize': '18px'}, 'flowchart': {'nodeSpacing': 45, 'rankSpacing': 60}}}%%
+flowchart LR
+    Y["YOLO output<br/>class, confidence, box"] --> A["Per-defect area"]
+    A --> S["Sum defect area"]
+    F["Frame area H x W"] --> D["D_s = defect / frame"]
+    S --> D
+    D --> R["Rolling average<br/>last 10 frames"]
+    R --> P["Predictor input"]
