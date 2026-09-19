@@ -22,6 +22,7 @@ Final Year Design Project (vision + image processing), team of 5–6, ~8 months
 | `05_DATA_STRATEGY.md` | Factory-data critical path + honest fallback ladder |
 | `06_DEFENCE_AND_PUBLICATION.md` | Pre-answered defence questions, paper venues |
 | `07_AGENT_RUNBOOK.md` | How an AI agent must work in this repo (read first) |
+| `08_COLAB_REPRO_STATUS.md` | Live Colab v1-repro state: staging spec, deviations, run history |
 
 ## Related repo docs (source of truth for details)
 
