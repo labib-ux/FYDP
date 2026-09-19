@@ -17,8 +17,14 @@ Continuation of ML course project `oyon79/Fabric-Defect-Detection_And_Lead-Time-
 5. 4-point grading + Jetson edge demo with TensorRT
 6. Thesis + paper tables (mAP, AUROC, MAE/RMSE/R2, ablations)
 
+## Full project brief (start here)
+`project/` — 8-month plan, novelty record, roles, data strategy, defence prep,
+and the agent runbook. Any new teammate or AI agent should read
+`project/README.md` first.
+
 ## Repo layout
 ```
+project/      # full brief: plan, novelty, roles, data, defence, agent runbook
 src/          # detector, bridge, predictor, integration (to be ported from v1)
 configs/      # training hyperparams
 data/         # NOT committed, see data/README.md
