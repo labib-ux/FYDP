@@ -9,6 +9,10 @@ python3 src/metrics.py --self-test
 python3 scripts/resplit_by_roll.py --root "/Users/nafizimtiazlabib/Downloads/Fabric Defects Dataset" --seed 42 --quarantine data/quarantine.json --out /tmp/split_check.json
 ```
 Must print `images=2549 ... train=2081 test=468`. If not, stop and report.
+Note: the resplit needs the EXTRACTED dataset folder. If only
+`~/Downloads/Fabric Defects Dataset.zip` exists, unzip it first
+(weights/dataset zips are never in git — see 09 §0; GitHub caps files at
+100 MB). The committed `data/split.json` manifest is unaffected.
 
 ## Frozen / forbidden
 - `src/v1_baseline/` — frozen audit reference. Never edit.
