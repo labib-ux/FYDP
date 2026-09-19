@@ -28,6 +28,12 @@ python3 /content/FYDP/scripts/reproduce_v1.py \
    sha256 `0ebbc80d…7644ee1`, = official ultralytics release, = local
    `~/Downloads/yolo11n.pt`) and `yolo11n-cls.pt` (5.6 MB,
    sha256 `c62d41bf…82502bd7`).
+   Fallback (no Drive share needed — official public release, byte-identical):
+   `wget -O yolo11n-cls.pt https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n-cls.pt`
+   then verify `sha256sum` = `c62d41bf9625777760018bf914d2e6cd472420ccd01706d97a61cb6c82502bd7`.
+   NEVER use a trained checkpoint (e.g. `runs/.../weights/best.pt`) as
+   `--base-weights`: both arms must start from the same pretrained base,
+   or the naive-vs-honest comparison is void.
 5. Clone repo to `/content/FYDP` (must be ≥ `f274e73`).
 6. Launch DETACHED so kernel interrupts can't kill training:
    `setsid nohup python3 … > /content/repro_run.log 2>&1 < /dev/null &`
