@@ -59,7 +59,27 @@ python3 /content/FYDP/scripts/reproduce_v1.py \
   `repro.json` never written (script saves only at end). Partial weights lost
   (ephemeral disk). Drive artifacts intact (zip + both weights).
 
-## Current state (2026-09-18/19)
+- Attempt 4 (teammate's GPU, `-cls`, 50 epochs, `--link-mode copy`):
+  **COMPLETE.** naive=0.937 (n=510), honest=0.940 (n=468),
+  `accuracy_drop=-0.003`. Full report in `../docs/repro.json` (committed).
+  Provenance: ultralytics 8.4.155, repo `f274e73` (no code changes after it
+  affect this script), both `best.pt` present. Weights sha256 screenshot
+  looked truncated — re-verify full 64-char hash before quoting numbers.
+
+## Result & interpretation (accepted 2026-09-20)
+- `accuracy_drop ≈ 0`, well within test noise (SE ≈ 1.1% at n≈500, p≈0.94).
+  Split protocol (random vs manifest) does NOT move accuracy on the CLEANED
+  pool — because both arms share the deduped+quarantined pool. v1's original
+  sin (identical train/test images, undocumented split) cannot be re-created
+  from cleaned data, so the drop to hunt was never available here.
+- The real gap is claim-vs-reproduced: v1 claimed 98%; clean conditions give
+  93.7–94.0% even on the leaky-protocol arm. The 98% is unreproducible.
+- Per-class weaknesses confirm Track 2: horizontal recall 0.68 honest
+  (Horizontal↔Hole confusion persists), Vertical F1 0.70, lines test n≈5
+  (too small to quote — report with CI or not at all).
+- Verdict: repro ACCEPTED. Numbers are quotable with CIs. Track 2 MAY START.
+
+## Current state (2026-09-20)
 - Colab runtime: dead (quota). MCP Colab cell tools withdrawn from agent
   session; re-pair + restage required before any new run.
 - Local repo: clean, `main` = `origin/main` (`457e52a`).
