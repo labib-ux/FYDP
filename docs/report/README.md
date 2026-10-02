@@ -1,16 +1,17 @@
-# docs/report/ — FYDP proposal report (agent pointer file)
+# docs/report/ — FYDP submitted report
 
 ## What lives here
-- `FYDP_REPORT.md` — the full proposal report (title → references). Diagrams are
-  embedded as Mermaid code blocks and render automatically on the GitHub website.
+- `FYDP_REPORT.md` — the full report, regenerated from the submitted PDF
+  (`262_034_Report.pdf`, 40pp, 27 September 2026). This file is the source of
+  truth; it was reconciled against the PDF, not the other way round.
 - `figures/*.mmd` — one standalone Mermaid source per figure:
-  - `fig31_system.mmd` — Figure 3.1 system diagram
-  - `fig32_workflow.mmd` — Figure 3.2 workflow flowchart
-  - `fig33_dfd.mmd` — Figure 3.3 data flow diagram (Level 0)
-  - `fig34_bridge.mmd` — Figure 3.4 metadata bridge
-  - `fig35_pipeline.mmd` — Figure 3.5 ML pipeline
-  - `fig36_fourpoint.mmd` — Figure 3.6 four-point grading
-  - `fig51_gantt.mmd` — Figure 5.1 project plan Gantt
+  - `fig31_context.mmd` — Figure 3.1 context diagram
+  - `fig32_system.mmd` — Figure 3.2 proposed system diagram
+  - `fig33_workflow.mmd` — Figure 3.5 system workflow
+  - `fig34_bridge.mmd` — Figure 3.6 metadata bridge
+  - `fig35_pipeline.mmd` — Figure 3.7 ML pipeline
+  - `fig36_fourpoint.mmd` — Figure 3.8 four-point grading
+  - `fig39_gantt.mmd` — Figure 3.9 project task allocation Gantt
 
 ## Instructions for any AI agent asked for the figures
 1. Hand the user the matching `figures/*.mmd` file content (or the embedded block
@@ -22,6 +23,10 @@
    raw markdown into Word will NOT render diagrams.
 
 ## Notes
-- Author names/IDs are withheld on the title page pending review; add before submission.
-- Report status: team-reviewed proposal draft (not the final completion report).
-  After the Colab reproduction results arrive, update §5 / Table 5.1 only.
+- Figure and table numbering follows the submitted PDF exactly. Chapter 3 uses
+  Figures 3.1–3.9 (3.1 context, 3.2 system, 3.3 architectural, 3.4 use case,
+  3.5 workflow, 3.6 metadata bridge, 3.7 ML pipeline, 3.8 four-point,
+  3.9 Gantt). Do not renumber.
+- Chapter 4 is intentionally empty in the submitted PDF — it carries the template
+  note "Must be present in Final Report." Results are not yet written.
+- `slides/FYDP-I_Defect-to-Delivery.pptx` is aligned to this report.
